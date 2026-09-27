@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>不来梅 · 汉堡 四日行程手册</title>
+<style>
+:root{
+  --paper:#F5EFE3; --ink:#20221F; --brick:#8B3A2E; --slate:#34495E;
+  --mustard:#C98A2E; --line:#D8CDB8; --card:#FFFDF8;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#1B1B18; --ink:#EDE7D9; --brick:#D9836F; --slate:#8FB0C9;
+    --mustard:#E3AE5C; --line:#3A382E; --card:#242420;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1B1B18; --ink:#EDE7D9; --brick:#D9836F; --slate:#8FB0C9;
+  --mustard:#E3AE5C; --line:#3A382E; --card:#242420;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.5; max-width:100%; overflow-x:hidden;}
+h1,h2,h3{font-family:Georgia,"Iowan Old Style",serif; font-weight:600; margin:0 0 .3em}
+a{color:var(--brick)}
+.wrap{max-width:640px;margin:0 auto;padding:1.2rem 1.1rem 4rem}
+header.top{padding:1.6rem 1.1rem .8rem;text-align:center}
+header.top h1{font-size:1.5rem;color:var(--brick)}
+header.top p{margin:.2rem 0 0;color:var(--slate);font-size:.92rem}
+
+/* focus card */
+.focus{background:var(--brick);color:#FBF6EC;border-radius:14px;padding:1.1rem 1.2rem;margin:1rem 0 1.6rem}
+.focus .eyebrow{font-size:.8rem;opacity:.85}
+.focus .title{font-size:1.15rem;font-weight:600;margin:.15rem 0 .6rem}
+.focus .countdown{display:flex;gap:.7rem;flex-wrap:wrap}
+.focus .cd-num{font-size:1.6rem;font-weight:700;font-variant-numeric:tabular-nums}
+.focus .cd-lab{font-size:.7rem;opacity:.8;display:block}
+.focus .cd-item{text-align:center;min-width:3.4rem}
+.focus .meta{margin-top:.6rem;font-size:.82rem;opacity:.9}
+
+/* section headers */
+section{margin-bottom:1.8rem}
+.sec-h{display:flex;align-items:baseline;gap:.5rem;border-bottom:2px solid var(--line);padding-bottom:.35rem;margin-bottom:.8rem}
+.sec-h h2{font-size:1.05rem;color:var(--slate)}
+
+/* map */
+.mapbox{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.8rem}
+.mapbox svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:1rem;flex-wrap:wrap;font-size:.78rem;margin-top:.5rem;color:var(--slate)}
+.legend span{display:inline-flex;align-items:center;gap:.3rem}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+
+/* confirmed bookings */
+.book{border-left:3px solid var(--mustard);padding:.5rem .8rem;margin-bottom:.6rem;background:var(--card);border-radius:0 8px 8px 0}
+.book .b-t{font-weight:600}
+.book .b-d{font-size:.85rem;color:var(--slate)}
+
+/* days */
+.day{border:1px solid var(--line);border-radius:12px;margin-bottom:.9rem;overflow:hidden;background:var(--card)}
+.day-h{display:flex;justify-content:space-between;align-items:center;padding:.8rem 1rem;cursor:pointer;background:transparent;border:none;width:100%;text-align:left;color:var(--ink);font:inherit}
+.day-h .d-date{font-family:Georgia,serif;font-weight:700;color:var(--brick)}
+.day-h .d-sub{font-size:.8rem;color:var(--slate)}
+.day-h .chev{transition:transform .2s}
+.day.open .chev{transform:rotate(180deg)}
+.day-body{display:none;padding:0 1rem 1rem}
+.day.open .day-body{display:block}
+.nav-all{display:inline-block;margin:.2rem 0 .8rem;font-size:.82rem;padding:.35rem .7rem;border:1px solid var(--brick);border-radius:20px;color:var(--brick);text-decoration:none}
+.item{display:flex;gap:.7rem;padding:.5rem 0;border-top:1px dashed var(--line)}
+.item:first-child{border-top:none}
+.item .time{flex:0 0 3.6rem;font-variant-numeric:tabular-nums;color:var(--slate);font-size:.85rem;padding-top:.1rem}
+.item .content{flex:1}
+.item .content a.loc{font-weight:600;text-decoration:none}
+.item .note{font-size:.82rem;color:var(--slate);margin-top:.15rem}
+.flag{display:inline-block;background:var(--mustard);color:#2b2100;font-size:.7rem;padding:.05rem .4rem;border-radius:5px;margin-left:.3rem;vertical-align:middle}
+.risk{border:1px solid var(--brick);background:rgba(139,58,46,.08);border-radius:8px;padding:.5rem .7rem;font-size:.82rem;margin-top:.5rem}
+
+/* todo */
+ul.todo{list-style:none;padding:0;margin:0}
+ul.todo li{padding:.5rem 0;border-top:1px dashed var(--line);font-size:.92rem}
+ul.todo li:first-child{border-top:none}
+ul.todo li b{color:var(--brick)}
+
+footer{text-align:center;font-size:.78rem;color:var(--slate);margin-top:2rem}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>不来梅 · 汉堡</h1>
+  <p>2026年10月5日 – 10月8日 · 时间均为德国当地时间（Europe/Berlin, UTC+2）</p>
+</header>
+
+<div class="wrap">
+
+  <div class="focus" id="focusCard">
+    <div class="eyebrow">此刻关注</div>
+    <div class="title" id="focusTitle">加载中…</div>
+    <div class="countdown" id="focusCountdown"></div>
+    <div class="meta" id="focusMeta"></div>
+  </div>
+
+  <section>
+    <div class="sec-h"><h2>行程总览</h2></div>
+    <div class="mapbox">
+      <svg viewBox="0 0 340 180" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40,150 Q90,80 150,60" stroke="#C98A2E" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="1 7"/>
+        <path d="M150,60 Q210,40 270,50" stroke="#34495E" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M270,50 Q210,70 150,63" stroke="#34495E" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="1 7" opacity=".7"/>
+        <path d="M150,60 Q90,110 40,150" stroke="#8B3A2E" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="40" cy="150" r="6" fill="#20221F"/><text x="52" y="154" font-size="12" fill="currentColor">Köln</text>
+        <circle cx="150" cy="60" r="7" fill="#8B3A2E"/><text x="163" y="64" font-size="13" fill="currentColor" font-weight="600">Bremen（每晚住这）</text>
+        <circle cx="270" cy="50" r="6" fill="#34495E"/><text x="245" y="34" font-size="12" fill="currentColor">Hamburg</text>
+      </svg>
+      <div class="legend">
+        <span><i class="dot" style="background:#C98A2E"></i>10/5 去程</span>
+        <span><i class="dot" style="background:#34495E"></i>10/6 · 10/7 汉堡往返（当天回不来梅）</span>
+        <span><i class="dot" style="background:#8B3A2E"></i>10/8 返程</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>已确认预订</h2></div>
+    <div class="book"><div class="b-t">火车票 · Köln Hbf ⇄ Bremen Hbf</div>
+      <div class="b-d">去程 10/5（周一）15:11–18:14　·　返程 10/8（周四）08:44–11:46</div></div>
+    <div class="book"><div class="b-t">Miniatur Wunderland（微缩景观世界）入场票</div>
+      <div class="b-d">10/6（周二）到达时段 20:30–21:00 · 2张优惠票 · 已预订完成</div></div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>逐日行程</h2></div>
+    <div id="days"></div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h2>待办清单</h2></div>
+    <ul class="todo">
+      <li><b>预订</b> Elbphilharmonie Plaza 时段票——自 2026年10月5日起（正好是你们抵达当天）观景平台由免费改为收费，正常票 €5/人，建议提前在官网订好10/7的时段，避免现场排队。</li>
+      <li><b>核实</b> 10/6 晚从汉堡返回不来梅的末班车——Miniatur Wunderland 20:30 才入场，逛完大概率22:00以后，请确认当晚汉堡→不来梅还有车。</li>
+      <li><b>决定</b> China Restaurant Spicy（Lübecker Str. 133）晚餐是否要电话订位，周三傍晚黄金时段稳妥起见建议提前问一下。</li>
+      <li>（其余待办事项等你补充后再加进来）</li>
+    </ul>
+  </section>
+
+</div>
+
+<footer>点地点名称可直接跳转 Google 地图导航 · 点每日标题展开当日详情</footer>
+
+<script>
+const TZ_NOTE = "Europe/Berlin (UTC+2)";
+function gmaps(q){return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q);}
+function gdir(stops){
+  const o=encodeURIComponent(stops[0]), d=encodeURIComponent(stops[stops.length-1]);
+  const wp=stops.slice(1,-1).map(encodeURIComponent).join("|");
+  let url="https://www.google.com/maps/dir/?api=1&origin="+o+"&destination="+d;
+  if(wp) url+="&waypoints="+wp;
+  return url;
+}
+
+const days = [
+  { date:"10月5日 · 周一", sub:"抵达日", stops:["Köln Hauptbahnhof","Bremen Hauptbahnhof","Schüttinger Gasthausbrauerei, Bremen"],
+    items:[
+      {t:"15:11",loc:"Köln Hbf",q:"Köln Hauptbahnhof",note:"乘车出发"},
+      {t:"18:14",loc:"Bremen Hbf",q:"Bremen Hauptbahnhof",note:"抵达，放下行李"},
+      {t:"19:30",loc:"Schüttinger Gasthausbrauerei",q:"Schüttinger Gasthausbrauerei, Bremen",note:"晚餐 · 自酿啤酒屋"}
+    ]},
+  { date:"10月6日 · 周二", sub:"不来梅老城 → 汉堡", stops:["Café Knigge, Bremen","Bremer Dom","Schnoorviertel Bremen","Alter Elbtunnel, Hamburg","Feldstraßenbunker Hamburg","Miniatur Wunderland, Hamburg","Bremen Hauptbahnhof"],
+    items:[
+      {t:"09:30",loc:"Café Knigge",q:"Café Knigge, Sögestraße, Bremen",note:"喝咖啡、买 Bremer Klaben"},
+      {t:"10:30",loc:"不来梅大教堂",q:"Bremer Dom",note:"教堂内部免费参观，本次不登塔"},
+      {t:"11:30",loc:"Schnoor 老城区",q:"Schnoorviertel, Bremen",note:"步行闲逛"},
+      {t:"13:00",loc:"前往汉堡",q:"Hamburg Hauptbahnhof",note:"火车约1小时"},
+      {t:"14:00",loc:"老易北隧道",q:"Alter Elbtunnel, Hamburg",note:"免费步行隧道"},
+      {t:"15:00",loc:"绿色堡垒（Bunker）",q:"Feldstraßenbunker, Hamburg",note:"屋顶花园，自行沿 Bergpfad 步道上行，免费，约300余级台阶"},
+      {t:"20:30",loc:"Miniatur Wunderland",q:"Miniatur Wunderland, Hamburg",note:"<span class=\"flag\">已订票</span> 20:30–21:00 入场窗口"},
+      {t:"~22:30",loc:"返回 Bremen Hbf",q:"Bremen Hauptbahnhof",note:"末班车请提前核实（见待办）"}
+    ]},
+  { date:"10月7日 · 周三", sub:"汉堡全天", stops:["Hamburg Rathaus","Elbphilharmonie","Westfield Hamburg-Überseequartier","China Restaurant Spicy, Lübecker Str. 133, 22087 Hamburg","Rindermarkthalle St. Pauli, Hamburg","Bremen Hauptbahnhof"],
+    items:[
+      {t:"上午",loc:"市政厅与教堂",q:"Hamburg Rathaus",note:"路过参观，不登塔"},
+      {t:"中午",loc:"Westfield Hamburg",q:"Westfield Hamburg-Überseequartier",note:"购物"},
+      {t:"下午",loc:"Elbphilharmonie Plaza",q:"Elbphilharmonie, Hamburg",note:"<span class=\"flag\">需订票</span> 10/5起观景台改为收费 €5/人，建议提前订时段"},
+      {t:"17:30",loc:"China Restaurant Spicy",q:"China Restaurant Spicy, Lübecker Str. 133, 22087 Hamburg",note:"晚餐 · 在 Hohenfelde，离下一站圣保利约4公里，地铁+步行约20分钟，记得留出通勤时间"},
+      {t:"19:00",loc:"圣保利夜市集市",q:"Rindermarkthalle St. Pauli, Hamburg",note:"周三/四 18:00–22:00 限定"},
+      {t:"~22:00",loc:"返回 Bremen Hbf",q:"Bremen Hauptbahnhof",note:""}
+    ]},
+  { date:"10月8日 · 周四", sub:"返程日", stops:["Bremen Hauptbahnhof","Köln Hauptbahnhof"],
+    items:[
+      {t:"早晨",loc:"在住处",q:"Bremen",note:"早餐（面包）"},
+      {t:"08:44",loc:"Bremen Hbf",q:"Bremen Hauptbahnhof",note:"乘车出发"},
+      {t:"11:46",loc:"Köln Hbf",q:"Köln Hauptbahnhof",note:"抵达，行程结束"}
+    ]}
+];
+
+const daysEl = document.getElementById('days');
+days.forEach((d,i)=>{
+  const div=document.createElement('div'); div.className='day'+(i===0?' open':'');
+  const itemsHtml = d.items.map(it=>
+    `<div class="item"><div class="time">${it.t}</div><div class="content">
+      <a class="loc" href="${gmaps(it.q)}" target="_blank" rel="noopener">📍 ${it.loc}</a>
+      ${it.note?`<div class="note">${it.note}</div>`:''}
+    </div></div>`).join('');
+  div.innerHTML = `
+    <button class="day-h" type="button">
+      <span><span class="d-date">${d.date}</span><br><span class="d-sub">${d.sub}</span></span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="day-body">
+      <a class="nav-all" href="${gdir(d.stops)}" target="_blank" rel="noopener">🧭 打开当日全程导航</a>
+      ${itemsHtml}
+    </div>`;
+  div.querySelector('.day-h').addEventListener('click',()=>div.classList.toggle('open'));
+  daysEl.appendChild(div);
+});
+
+// countdown to next event
+const eventList = [
+  {when:"2026-10-05T15:11:00+02:00",label:"从 Köln Hbf 出发"},
+  {when:"2026-10-05T18:14:00+02:00",label:"抵达 Bremen Hbf"},
+  {when:"2026-10-06T09:30:00+02:00",label:"Café Knigge 喝咖啡"},
+  {when:"2026-10-06T20:30:00+02:00",label:"Miniatur Wunderland 入场"},
+  {when:"2026-10-07T17:30:00+02:00",label:"Chuan Heritage 晚餐"},
+  {when:"2026-10-07T19:00:00+02:00",label:"圣保利夜市集市"},
+  {when:"2026-10-08T08:44:00+02:00",label:"从 Bremen Hbf 返程出发"},
+  {when:"2026-10-08T11:46:00+02:00",label:"抵达 Köln Hbf，行程结束"}
+].map(e=>({...e, d:new Date(e.when)}));
+
+function fmtBerlin(d){
+  return new Intl.DateTimeFormat('zh-CN',{timeZone:'Europe/Berlin',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(d);
+}
+function tick(){
+  const now=new Date();
+  let next = eventList.find(e=>e.d>now);
+  const title=document.getElementById('focusTitle');
+  const cd=document.getElementById('focusCountdown');
+  const meta=document.getElementById('focusMeta');
+  if(!next){ title.textContent="行程已结束"; cd.innerHTML=""; meta.textContent="祝旅途愉快 ✈️"; return; }
+  title.textContent = next.label;
+  let diff = next.d - now;
+  const day=Math.floor(diff/86400000); diff-=day*86400000;
+  const hr=Math.floor(diff/3600000); diff-=hr*3600000;
+  const min=Math.floor(diff/60000); diff-=min*60000;
+  const sec=Math.floor(diff/1000);
+  cd.innerHTML = [[day,'天'],[hr,'时'],[min,'分'],[sec,'秒']].map(([v,l])=>
+    `<div class="cd-item"><span class="cd-num">${v}</span><span class="cd-lab">${l}</span></div>`).join('');
+  meta.textContent = "当地时间 "+fmtBerlin(next.d)+"（"+TZ_NOTE+"）";
+}
+tick(); setInterval(tick,1000);
+</script>
+</body>
+</html>
